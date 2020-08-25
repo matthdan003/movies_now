@@ -1,0 +1,31 @@
+@using moviesnow.Models
+@model LoginUser
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form asp-action="Login" asp-controller="LogReg" method="post">
+        <div>
+            <label asp-for="Email"></label>
+            <input asp-for="Email">
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div>
+            <label asp-for="Password"></label>
+            <input asp-for="Password">
+            <span asp-validation-for="Password"></span>
+        </div>
+
+        <div>
+            <input type="submit" value="Login">
+        </div>
+    </form>
+
+</body>
+</html>
