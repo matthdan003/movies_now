@@ -135,9 +135,9 @@
                             var movie = @Model.results[i];
                             var link = movie.poster_path;
 
-                            <div class="carousel-item active">
+                            <div class="carousel-item active" data-toggle="tooltip" data-placement="right" title="@movie.title">
                                 <div class="col-md-2 col-4">
-                                    <img class="img-fluid rounded shadow" src="https://image.tmdb.org/t/p/original/@link" alt="" data-toggle="tooltip" data-placement="right" title="@movie.title">
+                                    <img class="img-fluid rounded shadow" src="https://image.tmdb.org/t/p/original/@link" alt="">
                                 </div>
                             </div>
                         }
@@ -147,9 +147,9 @@
                             var movie = @Model.results[i];
                             var link = movie.poster_path;
 
-                            <div class="carousel-item">
+                            <div class="carousel-item" data-toggle="tooltip" data-placement="right" title="@movie.title">
                                 <div class="col-md-2 col-4">
-                                    <img class="img-fluid rounded shadow" src="https://image.tmdb.org/t/p/original/@link" alt="" data-toggle="tooltip" data-placement="right" title="@movie.title">
+                                    <img class="img-fluid rounded shadow" src="https://image.tmdb.org/t/p/original/@link" alt="">
                                 </div>
                             </div>
                         }
