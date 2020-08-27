@@ -6,41 +6,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/profilestyle.css">
+    <title>Registration</title>
 </head>
 <body>
-    <h2>Register</h2>
-        <form asp-action="Register" asp-controller="LogReg" method="post">
-        <div>
-            <label asp-for="FirstName"></label>
-            <input asp-for="FirstName">
-            <span asp-validation-for="FirstName"></span>
+    <div class="container-fluid d-flex" id="container">
+        <div class="col-10 text-light text-center p-4 mx-auto my-auto rounded shadow">
+            <img src="~/img/logo.png" width="200" class="d-inline-block align-top pb-3" alt="" loading="lazy">
+            <p class="pb-3">Please enter your information below</p>
+            <form asp-action="RegisterUser" asp-controller="LogReg" method="post">
+                <div class="form-group">
+                    <input asp-for="FirstName" class="form-control" placeholder="First Name">
+                    @* <br> *@
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="LastName" class="form-control" placeholder="Last Name">
+                    @* <br> *@
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Email" class="form-control" placeholder="Email Address">
+                    @* <br> *@
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Password" class="form-control" placeholder="Password">
+                    @* <br> *@
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Confirm" class="form-control" placeholder="Confirm Password">
+                    @* <br> *@
+                    <span asp-validation-for="Confirm" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary col-12 mb-3">Submit</button>
+            </form>
+            <a href="/"><-- Back to Login</a>
         </div>
-        <div>
-            <label asp-for="LastName"></label>
-            <input asp-for="LastName">
-            <span asp-validation-for="LastName"></span>
-        </div>
-        <div>
-            <label asp-for="Email"></label>
-            <input asp-for="Email">
-            <span asp-validation-for="Email"></span>
-        </div>
-        <div>
-            <label asp-for="Password"></label>
-            <input asp-for="Password">
-            <span asp-validation-for="Password"></span>
-        </div>
-        <div>
-            <label asp-for="Confirm"></label>
-            <input asp-for="Confirm">
-            <span asp-validation-for="Confirm"></span>
-        </div>
-        <div>
-            <input type="submit" value="Register">
-        </div>
-    </form>
-
+    </div>
 
 </body>
 </html>

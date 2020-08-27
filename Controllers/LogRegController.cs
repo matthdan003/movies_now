@@ -20,7 +20,7 @@ namespace moviesnow.Controllers     //be sure to use your own project's namespac
         }
 
         //for each route this controller is to handle:
-        [HttpGet("login")]     //Http Method and the route
+        [HttpGet("")]     //Http Method and the route
         public IActionResult Login() //When in doubt, use IActionResult
         {
             return View("Login"); //or whatever you want to return
