@@ -61,3 +61,4 @@ D:\danie\Desktop\Projects\moviesnow\moviesnow\obj\Debug\netcoreapp3.1\Razor\View
 D:\danie\Desktop\Projects\moviesnow\moviesnow\obj\Debug\netcoreapp3.1\Razor\Views\Profile\Budget.cshtml.g.cs
 D:\danie\Desktop\Projects\moviesnow\moviesnow\obj\Debug\netcoreapp3.1\Razor\Views\Profile\Rating.cshtml.g.cs
 D:\danie\Desktop\Projects\moviesnow\moviesnow\obj\Debug\netcoreapp3.1\Razor\Views\Profile\Certification.cshtml.g.cs
+D:\danie\Desktop\Projects\moviesnow\moviesnow\obj\Debug\netcoreapp3.1\Razor\Views\Home\GenrePartial.cshtml.g.cs

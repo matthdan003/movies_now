@@ -14407,6 +14407,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\danie\\Desktop\\Projects\\moviesnow\\moviesnow\\Views\\Home\\GenrePartial.cshtml",
+      "TargetPath": "Views\\Home\\GenrePartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\danie\\Desktop\\Projects\\moviesnow\\moviesnow\\Views\\LogReg\\Register.cshtml",
       "TargetPath": "Views\\LogReg\\Register.cshtml",
       "FileKind": "mvc"

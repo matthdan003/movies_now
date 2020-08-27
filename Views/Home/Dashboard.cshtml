@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/carousel.css">
     <title>Dashboard</title>
 </head>
 <body>
@@ -123,8 +124,76 @@
         </div>
     </div>
 
+    <div class="container text-center text-white py-3">
+
+        <h3 class="pb-2 text-left">Drama Movies</h3>
+        <div class="row mx-auto my-auto">
+            <div id="myCarousel" class="carousel slide w-100" data-ride="false">
+                <div class="carousel-inner w-100" role="listbox">
+                    @for (int i = 0; i < 1; i++)
+                        {
+                            var movie = @Model.results[i];
+                            var link = movie.poster_path;
+
+                            <div class="carousel-item active">
+                                <div class="col-md-2 col-4">
+                                    <img class="img-fluid rounded shadow" src="https://image.tmdb.org/t/p/original/@link" alt="" data-toggle="tooltip" data-placement="right" title="@movie.title">
+                                </div>
+                            </div>
+                        }
+
+                    @for (int i = 1; i < 19; i++)
+                        {
+                            var movie = @Model.results[i];
+                            var link = movie.poster_path;
+
+                            <div class="carousel-item">
+                                <div class="col-md-2 col-4">
+                                    <img class="img-fluid rounded shadow" src="https://image.tmdb.org/t/p/original/@link" alt="" data-toggle="tooltip" data-placement="right" title="@movie.title">
+                                </div>
+                            </div>
+                        }
+                </div>
+                <a class="carousel-control-prev bg-dark w-auto" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next bg-dark w-auto" href="#myCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+
+            $('[data-toggle="tooltip"]').tooltip();
+
+            $('#myCarousel .carousel-item').each(function() {
+                var minPerSlide = 4;
+                var next = $(this).next();
+                if (!next.length) {
+                    next = $(this).siblings(':first');
+                }
+                next.children(':first-child').clone().appendTo($(this));
+
+                for (var i = 0; i < minPerSlide; i++) {
+                    next = next.next();
+                    if (!next.length) {
+                        next = $(this).siblings(':first');
+                    }
+
+                    next.children(':first-child').clone().appendTo($(this));
+                }
+            });
+
+        });
+    </script>
 </body>
 </html>
