@@ -1,15 +1,30 @@
-.top-bar {
-    background-color: rgb(42, 47, 51);
+body {
+    background-color: rgb(37, 42, 46);
+}
+
+#main_carousel {
+    background-image: url("../img/poster_bg.jpg");
+    background-size: 3000px;
+    background-repeat: no-repeat;
 }
 
 .carousel-indicators {
-    bottom: -50px;
+    bottom: -40px;
 }
 
 .carousel-control-next {
-    right: -50px;
+    right: -30px;
 }
 
 .carousel-control-prev {
-    left: -50px;
+    left: -30px;
+}
+
+.movie-teaser img {
+    max-width: 25%;
+    min-width: 150px;
+}
+
+.badge {
+    font-size: 17px;
 }

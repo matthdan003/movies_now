@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="~/css/style.css">
     <title>Dashboard</title>
 </head>
-<body class="bg-dark">
+<body>
     <header class="header">
         <div class="top-bar">
                 
@@ -43,7 +43,7 @@
         </div>
     </header>
 
-    <div class="container-fluid pt-4">
+    <div class="container-fluid py-4" id="main_carousel">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -65,10 +65,18 @@
                         var link = movie.poster_path;
 
                         <div class="container text-white">
-                            <div class="profile-teaser media flex-column flex-md-row px-5 px-md-0">
-                                <img class="profile-image mb-3 mb-md-0 mr-md-5 ml-md-0 rounded mx-auto shadow" width="25%" src="https://image.tmdb.org/t/p/original/@link" alt="">
-                                <div class="media-body text-center text-md-left my-auto">
-                                    <h1 class="mt-0 font-weight-bold">@movie.title <span class="badge badge-primary" >@movie.vote_average</span></h1>
+                            <div class="movie-teaser media flex-column flex-md-row px-5">
+                                <img class="movie-image mb-3 mb-md-0 mr-md-5 ml-md-0 rounded mx-auto shadow" src="https://image.tmdb.org/t/p/original/@link" alt="">
+                                <div class="movie-body text-center text-md-left my-auto">
+                                    <h1 class="mt-0 font-weight-bold">
+                                        @movie.title 
+                                        <span class="badge badge-primary align-middle">
+                                            <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-star align-baseline" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288l1.847-3.658 1.846 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.564.564 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                            </svg>
+                                            @movie.vote_average
+                                        </span>
+                                    </h1>
                                     <div class="bio mb-3">@movie.overview</div>
                                     <button type="button" class="btn btn-primary">More Info</button>
                                 </div>
@@ -84,13 +92,21 @@
                 var link = movie.poster_path;
                 <div class="carousel-item">
                     <div class="container text-white">
-                        <div class="profile-teaser media flex-column flex-md-row px-5 px-md-0">
-                            <img class="profile-image mb-3 mb-md-0 mr-md-5 ml-md-0 rounded mx-auto shadow" width="25%" src="https://image.tmdb.org/t/p/original/@link" alt="">
-                            <div class="media-body text-center text-md-left my-auto">
-                                <h1 class="mt-0 font-weight-bold">@movie.title <span class="badge badge-primary" >@movie.vote_average</span></h1>
-                                <div class="bio mb-3">@movie.overview</div>
-                                <button type="button" class="btn btn-primary">More Info</button>
-                            </div>
+                        <div class="movie-teaser media flex-column flex-md-row px-5">
+                            <img class="movie-image mb-3 mb-md-0 mr-md-5 ml-md-0 rounded mx-auto shadow" src="https://image.tmdb.org/t/p/original/@link" alt="">
+                            <div class="movie-body text-center text-md-left my-auto">
+                                    <h1 class="mt-0 font-weight-bold">
+                                        @movie.title  
+                                        <span class="badge badge-primary align-middle">
+                                            <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-star align-baseline" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288l1.847-3.658 1.846 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.564.564 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                            </svg>
+                                            @movie.vote_average
+                                        </span>
+                                    </h1>
+                                    <div class="bio mb-3">@movie.overview</div>
+                                    <button type="button" class="btn btn-primary">More Info</button>
+                                </div>
                         </div>
                     </div>
                 </div>

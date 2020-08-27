@@ -32,31 +32,6 @@
                 return deserialize;
             }
 
-            [HttpGet("movie/{movie_id}")]
-            public IActionResult MovieDetails(int movie_id)
-            {
-                Movie movie = GetMovie(movie_id);
-                return View("Index", movie);
-            }
-
-            public IActionResult FavoriteGenre()
-            {
-                var client = _clientFactory.CreateClient("BaseAddress");
-                var response = client.GetAsync("/3/genre/movie/list?api_key=002100dd35529be2881e0dbc97008958").Result;
-                var json = response.Content.ReadAsStringAsync().Result;
-                var deserialize = JsonConvert.DeserializeObject<AllGenres>(json);
-                return View("FavoriteGenre", deserialize);
-            }
-
-            public IActionResult FavoriteGenreReturn(int genre_id)
-            {
-                var client = _clientFactory.CreateClient("BaseAddress");
-                var response = client.GetAsync($"/3/discover/movie?api_key=002100dd35529be2881e0dbc97008958&language=en-US&with_genres={genre_id}&sort_by=popularity.desc&page=1").Result;
-                var json = response.Content.ReadAsStringAsync().Result;
-                var deserialize = JsonConvert.DeserializeObject<SearchResult>(json);
-                return View("Test", deserialize);
-            }
-
             [HttpGet("dashboard")]
             public IActionResult Dashboard()
             {
@@ -65,6 +40,13 @@
                 var json = response.Content.ReadAsStringAsync().Result;
                 var deserialize = JsonConvert.DeserializeObject<SearchResult>(json);
                 return View("Dashboard", deserialize);
+            }
+
+            [HttpGet("movie/{movie_id}")]
+            public IActionResult MovieDetails(int movie_id)
+            {
+                Movie movie = GetMovie(movie_id);
+                return View("Index", movie);
             }
         }
     }

@@ -14402,6 +14402,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\danie\\Desktop\\Projects\\moviesnow\\moviesnow\\Views\\Profile\\Genre.cshtml",
+      "TargetPath": "Views\\Profile\\Genre.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\danie\\Desktop\\Projects\\moviesnow\\moviesnow\\Views\\LogReg\\Register.cshtml",
       "TargetPath": "Views\\LogReg\\Register.cshtml",
       "FileKind": "mvc"
@@ -14412,6 +14417,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\danie\\Desktop\\Projects\\moviesnow\\moviesnow\\Views\\Profile\\Rating.cshtml",
+      "TargetPath": "Views\\Profile\\Rating.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\danie\\Desktop\\Projects\\moviesnow\\moviesnow\\Views\\Profile\\Budget.cshtml",
+      "TargetPath": "Views\\Profile\\Budget.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\danie\\Desktop\\Projects\\moviesnow\\moviesnow\\Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
       "FileKind": "mvc"
@@ -14419,6 +14434,11 @@
     {
       "FilePath": "d:\\danie\\Desktop\\Projects\\moviesnow\\moviesnow\\Views\\Home\\Test.cshtml",
       "TargetPath": "Views\\Home\\Test.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\danie\\Desktop\\Projects\\moviesnow\\moviesnow\\Views\\Profile\\Certification.cshtml",
+      "TargetPath": "Views\\Profile\\Certification.cshtml",
       "FileKind": "mvc"
     }
   ],

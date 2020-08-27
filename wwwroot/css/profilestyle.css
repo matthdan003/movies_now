@@ -1,0 +1,10 @@
+#container {
+    height: 100vh;
+    background-image: url("../img/poster_bg.jpg");
+    background-size: 3000px;
+    background-repeat: no-repeat;
+}
+#container .col-10 {
+    background-color: rgb(37, 42, 46);
+    max-width: 450px;
+}
