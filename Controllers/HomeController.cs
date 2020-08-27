@@ -46,7 +46,7 @@
             public IActionResult MovieDetails(int movie_id)
             {
                 Movie movie = GetMovie(movie_id);
-                return View("Index", movie);
+                return View("MovieDetails", movie);
             }
         }
     }

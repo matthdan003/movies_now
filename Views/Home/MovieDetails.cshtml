@@ -1,0 +1,121 @@
+@using moviesnow.Models
+@model Movie
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/moviestyle.css">
+    <title>@Model.title</title>
+</head>
+<body>
+    <header class="header">
+        <div class="top-bar">
+                
+            <div class="container-fluid">
+            
+                <nav class="navbar navbar-expand-lg navbar-dark position-relative">
+                    <a class="navbar-brand" href="#">
+                        <img src="~/img/logo.png" width="200" class="d-inline-block align-top" alt="" loading="lazy">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                    <div class="collapse navbar-collapse text-uppercase" id="navigation">
+                        <ul class="navbar-nav ml-lg-auto">
+                            <li class="nav-item mr-lg-3">
+                                <a class="nav-link" href="/dashboard">Dashboard</a>
+                            </li>
+                            <li class="nav-item mr-lg-3">
+                                <a class="nav-link" href="">All Movies</a>
+                            </li>				
+                        </ul>
+                        <span class="navbar-text text-capitalize">Welcome, Daniel</span>
+                    </div>
+                    
+                </nav>
+            
+            </div>
+                
+        </div>
+    </header>
+
+    <div class="container-fluid" id="movie_banner" style="background-image: url(https://image.tmdb.org/t/p/original/@Model.backdrop_path); background-repeat: no-repeat; background-size: 100%; background-position: 50% 25%;">
+        <div class="container-fluid py-5" id="banner_overlay">
+            <div class="container text-white" id="movie_details">
+                <div class="movie-teaser media flex-column flex-md-row px-5">
+                    <img class="movie-image mb-3 mb-md-0 mr-md-5 ml-md-0 rounded mx-auto shadow" src="https://image.tmdb.org/t/p/original/@Model.poster_path" alt="">
+                    <div class="movie-body text-center text-md-left my-auto">
+                        <h1 class="mt-0 font-weight-bold">
+                            @Model.title 
+                            <span class="badge badge-primary align-middle">
+                                <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-star align-baseline" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288l1.847-3.658 1.846 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.564.564 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                </svg>
+                                @Model.vote_average
+                            </span>
+                        </h1>
+                        <p><span id="cert"></span> @Model.release_date | @Model.genres.ElementAt(0).name | @Model.runtime Minutes</p>
+                        <p class="font-weight-light text-uppercase"><em>@Model.tagline</em></p>
+                        <div class="bio mb-3"><strong>Overview: </strong>@Model.overview</div>
+                        <p><strong>Language: </strong>@Model.original_language</p>
+                        <p><strong>Status: </strong>@Model.status</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        @* <img src="https://image.tmdb.org/t/p/original/@Model.backdrop_path" width="100%" alt=""> *@
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="" crossorigin="anonymous"></script>
+    <script src="~/script/lightslider.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('#autoWidth').lightSlider({
+                autoWidth:true,
+                loop:true,
+                onSliderLoad: function() {
+                    $('#autoWidth').removeClass('cS-hidden');
+                } 
+            });
+            
+            $.get("https://api.themoviedb.org/3/movie/@Model.id?api_key=002100dd35529be2881e0dbc97008958&language=en-US&append_to_response=release_dates", function(res) {
+                var html_str = "<strong>"
+                var cert = res.release_dates
+                var results = cert.results
+                
+                var index = 0
+                for (var i=0; i<results.length; i++){
+                    var values = Object.values(results[i])
+                    
+                    if (values.includes("US")){
+                        index = i
+                        break;
+                    }
+                }
+
+                var object = results[index]
+                var release_dates = object.release_dates
+                var content = release_dates[0]
+                var certification = content.certification
+
+                if (certification == ""){
+                    certification = "NR"
+                }
+                html_str += certification
+                html_str += "</strong> | "
+                $("#cert").html(html_str)
+            }, "json");
+        });
+    </script>
+
+</body>

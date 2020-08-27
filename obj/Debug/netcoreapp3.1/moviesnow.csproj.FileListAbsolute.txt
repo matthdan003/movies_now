@@ -55,10 +55,9 @@ D:\danie\Desktop\Projects\moviesnow\moviesnow\obj\Debug\netcoreapp3.1\moviesnow.
 D:\danie\Desktop\Projects\moviesnow\moviesnow\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 D:\danie\Desktop\Projects\moviesnow\moviesnow\obj\Debug\netcoreapp3.1\Razor\Views\LogReg\Login.cshtml.g.cs
 D:\danie\Desktop\Projects\moviesnow\moviesnow\obj\Debug\netcoreapp3.1\Razor\Views\LogReg\Register.cshtml.g.cs
-D:\danie\Desktop\Projects\moviesnow\moviesnow\obj\Debug\netcoreapp3.1\Razor\Views\Home\Test.cshtml.g.cs
 D:\danie\Desktop\Projects\moviesnow\moviesnow\obj\Debug\netcoreapp3.1\Razor\Views\Home\Dashboard.cshtml.g.cs
 D:\danie\Desktop\Projects\moviesnow\moviesnow\obj\Debug\netcoreapp3.1\Razor\Views\Profile\Genre.cshtml.g.cs
 D:\danie\Desktop\Projects\moviesnow\moviesnow\obj\Debug\netcoreapp3.1\Razor\Views\Profile\Budget.cshtml.g.cs
 D:\danie\Desktop\Projects\moviesnow\moviesnow\obj\Debug\netcoreapp3.1\Razor\Views\Profile\Rating.cshtml.g.cs
 D:\danie\Desktop\Projects\moviesnow\moviesnow\obj\Debug\netcoreapp3.1\Razor\Views\Profile\Certification.cshtml.g.cs
-D:\danie\Desktop\Projects\moviesnow\moviesnow\obj\Debug\netcoreapp3.1\Razor\Views\Home\GenrePartial.cshtml.g.cs
+D:\danie\Desktop\Projects\moviesnow\moviesnow\obj\Debug\netcoreapp3.1\Razor\Views\Home\MovieDetails.cshtml.g.cs

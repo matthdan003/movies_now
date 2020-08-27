@@ -18,5 +18,6 @@ namespace moviesnow.Models
         public string tagline {get; set;}
         public string title {get; set;}
         public double vote_average {get; set;}
+        public string backdrop_path {get; set;}
     }
 }
