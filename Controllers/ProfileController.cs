@@ -13,11 +13,18 @@ namespace moviesnow.Controllers
 {
     public class ProfileController : Controller
     {
+        private MyContext _context;
         private readonly IHttpClientFactory _clientFactory;
-        public ProfileController(IHttpClientFactory clientFactory)
+
+        public ProfileController(MyContext context, IHttpClientFactory clientFactory)
         {
+            _context = context;
             _clientFactory = clientFactory;
         }
+        // public ProfileController(IHttpClientFactory clientFactory)
+        // {
+        // }
+
         public SearchResult GetResults(string url)
         {
             var client = _clientFactory.CreateClient("BaseAddress");
@@ -26,8 +33,6 @@ namespace moviesnow.Controllers
             var deserialize = JsonConvert.DeserializeObject<SearchResult>(json);
             return deserialize;
         }
-
-
 
         public SearchResult FavoriteGenreReturn(int genre_id)
         {
@@ -87,52 +92,104 @@ namespace moviesnow.Controllers
         [HttpGet("genre")]
         public IActionResult FavoriteGenre()
         {
-            var client = _clientFactory.CreateClient("BaseAddress");
-            var response = client.GetAsync($"/3/genre/movie/list?api_key=002100dd35529be2881e0dbc97008958").Result;
-            var json = response.Content.ReadAsStringAsync().Result;
-            var deserialize = JsonConvert.DeserializeObject<AllGenres>(json);
-            return View("Genre", deserialize);
+            int? UserId = HttpContext.Session.GetInt32("UserId");
+            if (UserId == null)
+            {
+                return RedirectToAction("Login", "LogReg");
+            }
+            else
+            {
+                var client = _clientFactory.CreateClient("BaseAddress");
+                var response = client.GetAsync($"/3/genre/movie/list?api_key=002100dd35529be2881e0dbc97008958").Result;
+                var json = response.Content.ReadAsStringAsync().Result;
+                var deserialize = JsonConvert.DeserializeObject<AllGenres>(json);
+                return View("Genre", deserialize);
+            }
         }
 
         [HttpGet("genre/{genre_id}")]
         public IActionResult FavoriteGenreToDB(int genre_id)
         {
+            int UserId = (int) HttpContext.Session.GetInt32("UserId");
+            User user = _context.Users.FirstOrDefault(u => u.UserId == UserId);
+            user.Genre = genre_id;
+            user.UpdatedAt = DateTime.Now;
+            _context.SaveChanges();
             return RedirectToAction("FavoriteBudget");
         }
 
         [HttpGet("budget")]
         public IActionResult FavoriteBudget()
         {
-            return View("Budget");
+            int? UserId = HttpContext.Session.GetInt32("UserId");
+            if (UserId == null)
+            {
+                return RedirectToAction("Login", "LogReg");
+            }
+            else
+            {
+                return View("Budget");
+            }
         }
 
         [HttpGet("budget/{budget}")]
         public IActionResult FavoriteBudgetToDB(string budget)
         {
+            int UserId = (int) HttpContext.Session.GetInt32("UserId");
+            User user = _context.Users.FirstOrDefault(u => u.UserId == UserId);
+            user.Budget = budget;
+            user.UpdatedAt = DateTime.Now;
+            _context.SaveChanges();
             return RedirectToAction("FavoriteRating");
         }
 
         [HttpGet("rating")]
         public IActionResult FavoriteRating()
         {
-            return View("Rating");
+            int? UserId = HttpContext.Session.GetInt32("UserId");
+            if (UserId == null)
+            {
+                return RedirectToAction("Login", "LogReg");
+            }
+            else
+            {
+                return View("Rating");
+            }
         }
 
         [HttpGet("rating/{rating}")]
-        public IActionResult FavoriteRatingToDB()
+        public IActionResult FavoriteRatingToDB(string rating)
         {
+            int UserId = (int) HttpContext.Session.GetInt32("UserId");
+            User user = _context.Users.FirstOrDefault(u => u.UserId == UserId);
+            user.Rating = rating;
+            user.UpdatedAt = DateTime.Now;
+            _context.SaveChanges();
             return RedirectToAction("FavoriteCertification");
         }
 
         [HttpGet("certification")]
         public IActionResult FavoriteCertification()
         {
-            return View("Certification");
+            int? UserId = HttpContext.Session.GetInt32("UserId");
+            if (UserId == null)
+            {
+                return RedirectToAction("Login", "LogReg");
+            }
+            else
+            {
+                return View("Certification");
+            }
         }
         
         [HttpGet("certification/{certification}")]
-        public IActionResult FavoriteCertificationToDB()
+        public IActionResult FavoriteCertificationToDB(string certification)
         {
+            int UserId = (int) HttpContext.Session.GetInt32("UserId");
+            User user = _context.Users.FirstOrDefault(u => u.UserId == UserId);
+            user.Certification = certification;
+            user.UpdatedAt = DateTime.Now;
+            _context.SaveChanges();
             return RedirectToAction("Dashboard", "Home");
         }
     }

@@ -27,8 +27,8 @@ namespace moviesnow.Models
 
         [Required(ErrorMessage="Password is required")]
         [DataType(DataType.Password)]
-        [MinLength(8, ErrorMessage="Password must be a least 8 characters")]
-        [RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$", ErrorMessage="Password must contain at least 1 number, letter, and special character")]
+        // [MinLength(8, ErrorMessage="Password must be a least 8 characters")]
+        // [RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$", ErrorMessage="Password must contain at least 1 number, letter, and special character")]
         [Display(Name = "Password ")]
         public string Password {get; set;}
 
@@ -40,6 +40,11 @@ namespace moviesnow.Models
         public string Confirm {get; set;}
         public DateTime CreatedAt {get;set;} = DateTime.Now;
         public DateTime UpdatedAt {get;set;} = DateTime.Now;
+
+        public int? Genre {get; set;} = null;
+        public string Budget {get; set;} = null;
+        public string Rating {get; set;} = null;
+        public string Certification {get; set;} = null;
 
     }
 }

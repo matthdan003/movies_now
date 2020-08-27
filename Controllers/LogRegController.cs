@@ -56,7 +56,7 @@ namespace moviesnow.Controllers     //be sure to use your own project's namespac
                 HttpContext.Session.SetInt32("UserId", user.UserId);
 
                 //Send to sucess page
-                return RedirectToAction("Dashboard", "Home");
+                return RedirectToAction("FavoriteGenre", "Profile");
             }
             return Register();
         }
@@ -73,7 +73,7 @@ namespace moviesnow.Controllers     //be sure to use your own project's namespac
                 //Check if returned user equals null
                 if (userInDb == null)
                 {
-                    ModelState.AddModelError("Email2", "Invalid Email/Password");
+                    ModelState.AddModelError("Email", "Invalid Email/Password");
                     return Login();
                 }
 
@@ -84,7 +84,7 @@ namespace moviesnow.Controllers     //be sure to use your own project's namespac
 
                 if (result == 0)
                 {
-                    ModelState.AddModelError("Email2", "Invalid Email/Password");
+                    ModelState.AddModelError("Email", "Invalid Email/Password");
                     return Login();
                 }
 
@@ -99,7 +99,7 @@ namespace moviesnow.Controllers     //be sure to use your own project's namespac
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            return RedirectToAction("Index");
+            return RedirectToAction("Login");
         }
     }
 }
