@@ -32,3 +32,57 @@ body {
 .movie-poster img {
     width: 10%;
 }
+
+#favorites_carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.poster {
+    height: 250px;
+    display: flex;
+    align-items: center;
+}
+.poster img {
+    max-width: 150px;
+}
+
+.overlay {
+    display: block;
+    position: absolute;
+    width: 150px;
+    height: 225px;
+    background-color: rgb(20, 18, 18, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay:link {
+    text-decoration: none;
+}
+
+.overlay {
+    visibility: hidden;
+}
+
+.poster:hover {
+    transform-style: preserve-3d;
+	transform: scale(1.1);
+	transition: all ease 0.3s;
+}
+
+.poster:hover .overlay {
+    visibility: visible;
+    animation:fade 0.5s;
+}
+
+@keyframes fade{
+	0%{
+		opacity: 0;
+	}
+	100%{
+		opacity: 1;
+	}
+}
