@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace moviesnow.Models
 {
-    public class LoginUser
+    public class EditUser
     {
         [Required(ErrorMessage="Email address is required")]
         [EmailAddress]
@@ -16,5 +16,12 @@ namespace moviesnow.Models
         [DataType(DataType.Password)]
         [Display(Name = "Password ")]
         public string Password {get; set;}
+
+        [Required(ErrorMessage="Confirm your password")]
+        [NotMapped]
+        [Compare("Password", ErrorMessage="Please ensure passwords match")]
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm Password ")]
+        public string Confirm {get; set;}
     }
 }

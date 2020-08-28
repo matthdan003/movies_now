@@ -14407,6 +14407,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\danie\\Desktop\\Projects\\moviesnow\\moviesnow\\Views\\Profile\\EditProfile.cshtml",
+      "TargetPath": "Views\\Profile\\EditProfile.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\danie\\Desktop\\Projects\\moviesnow\\moviesnow\\Views\\LogReg\\Register.cshtml",
       "TargetPath": "Views\\LogReg\\Register.cshtml",
       "FileKind": "mvc"

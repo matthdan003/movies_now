@@ -125,5 +125,47 @@ namespace moviesnow.Controllers
             _context.SaveChanges();
             return RedirectToAction("Dashboard", "Home");
         }
+
+        [HttpGet("edit_profile")]
+        public IActionResult EditProfile()
+        {
+            int? UserId = HttpContext.Session.GetInt32("UserId");
+            if (UserId == null)
+            {
+                return RedirectToAction("Login", "LogReg");
+            }
+            else
+            {
+                User user = _context.Users.FirstOrDefault(u => u.UserId == UserId);
+
+                EditUser profile = new EditUser();
+                profile.Email = user.Email;
+
+                EditPreferences preferences = new EditPreferences();
+                preferences.Genre = user.Genre;
+                preferences.Budget = user.Budget;
+                preferences.Rating = user.Rating;
+                preferences.Certification = user.Certification;
+
+                var client = _clientFactory.CreateClient("BaseAddress");
+                var response = client.GetAsync($"/3/genre/movie/list?api_key=002100dd35529be2881e0dbc97008958").Result;
+                var json = response.Content.ReadAsStringAsync().Result;
+                var deserialize = JsonConvert.DeserializeObject<AllGenres>(json);
+
+                EditProfileWrapper WMod = new EditProfileWrapper();
+                WMod.User = user;
+                WMod.Profile = profile;
+                WMod.Preferences = preferences;
+                WMod.Genres = deserialize;
+
+                return View("EditProfile", WMod);
+            }
+        }
+
+        [HttpPost("edit_profile")]
+        public IActionResult UpdateProfile(EditProfileWrapper profile)
+        {
+            return RedirectToAction("EditProfile");
+        }
     }
 }
