@@ -18,7 +18,7 @@
             <div class="container-fluid">
             
                 <nav class="navbar navbar-expand-lg navbar-dark position-relative">
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="/dashboard">
                         <img src="~/img/logo.png" width="200" class="d-inline-block align-top" alt="" loading="lazy">
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
@@ -136,7 +136,7 @@
     <div class="container-fluid mt-5 mb-2 px-3 text-white">
         <h3 class="ml-4">@Model.AllGenres.genres.FirstOrDefault(g => g.id == Model.User.Genre).name Movies</h3>
         <ul id="autoWidth" class="cs-hidden">
-            @for (int i = 0; i < 19; i++)
+            @for (int i = 0; i < 20; i++)
             {
                 var movie = Model.Genre.results[i];
                 var poster_link = movie.poster_path;
@@ -163,7 +163,7 @@
             <h3 class="ml-4">Small-Screen Movies</h3>
         }
         <ul id="autoWidth2" class="cs-hidden">
-            @for (int i = 0; i < 19; i++)
+            @for (int i = 0; i < 20; i++)
             {
                 var movie = Model.Budget.results[i];
                 var poster_link = movie.poster_path;
@@ -190,7 +190,7 @@
             <h3 class="ml-4">Popular Movies</h3>
         }
         <ul id="autoWidth3" class="cs-hidden">
-            @for (int i = 0; i < 19; i++)
+            @for (int i = 0; i < 20; i++)
             {
                 var movie = Model.Rating.results[i];
                 var poster_link = movie.poster_path;
@@ -217,7 +217,7 @@
             <h3 class="ml-4">SFW Movies</h3>
         }
         <ul id="autoWidth4" class="cs-hidden">
-            @for (int i = 0; i < 19; i++)
+            @for (int i = 0; i < 20; i++)
             {
                 var movie = Model.Certification.results[i];
                 var poster_link = movie.poster_path;

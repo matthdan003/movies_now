@@ -140,7 +140,13 @@ namespace moviesnow.Controllers     //be sure to use your own project's namespac
             else
             {
                 Movie movie = GetMovie(movie_id);
-                return View("MovieDetails", movie);
+                User user = _context.Users.FirstOrDefault(u => u.UserId == UserId);
+
+                DetailsWrapper WMod = new DetailsWrapper();
+                WMod.User = user;
+                WMod.Movie = movie;
+
+                return View("MovieDetails", WMod);
             }
         }
     }
