@@ -1,5 +1,5 @@
 @using moviesnow.Models
-@model SearchResult
+@model DashboardWrapper
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +37,7 @@
                                 <a class="nav-link disabled" href="" aria-disabled="true">Welcome,</a>
                             </li>
                             <li class="nav-item dropdown mr-lg-3">
-                                <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Daniel</a>
+                                <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Model.User.FirstName</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="">Edit Profile</a>
                                     <a class="dropdown-item" href="/logout">Logout</a>
@@ -71,7 +71,7 @@
                 <div class="carousel-item active">
                     @for (int i = 0; i < 1; i++)
                     {
-                        var movie = Model.results[i];
+                        var movie = Model.Recommend.results[i];
                         var link = movie.poster_path;
 
                         <div class="container text-white">
@@ -98,7 +98,7 @@
 
             @for (int i = 1; i <10; i++)
             {
-                var movie = Model.results[i];
+                var movie = Model.Recommend.results[i];
                 var link = movie.poster_path;
                 <div class="carousel-item">
                     <div class="container text-white">
@@ -133,11 +133,93 @@
         </div>
     </div>
 
-    <div class="container-fluid my-5 px-3" id="favorites_carousel">
+    <div class="container-fluid mt-5 mb-2 px-3 text-white">
+        <h3>@Model.User.Genre</h3>
         <ul id="autoWidth" class="cs-hidden">
             @for (int i = 0; i < 19; i++)
             {
-                var movie = Model.results[i];
+                var movie = Model.Genre.results[i];
+                var poster_link = movie.poster_path;
+
+                <li class="item-a">
+                    <div class="poster">
+                        <a class="overlay rounded text-center p-2" href="/movie/@movie.id">
+                            <h6 class="text-white">@movie.title</h6>
+                        </a>
+                        <img class="rounded shadow" src="https://image.tmdb.org/t/p/original/@poster_link" alt="">
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <div class="container-fluid mb-2 px-3 text-white">
+        @if (Model.User.Budget == "big_budget")
+        {
+            <h3 class="ml-4">Big-Budget Movies</h3>
+        }
+        else 
+        {
+            <h3 class="ml-4">Small-Screen Movies</h3>
+        }
+        <ul id="autoWidth2" class="cs-hidden">
+            @for (int i = 0; i < 19; i++)
+            {
+                var movie = Model.Budget.results[i];
+                var poster_link = movie.poster_path;
+
+                <li class="item-a">
+                    <div class="poster">
+                        <a class="overlay rounded text-center p-2" href="/movie/@movie.id">
+                            <h6 class="text-white">@movie.title</h6>
+                        </a>
+                        <img class="rounded shadow" src="https://image.tmdb.org/t/p/original/@poster_link" alt="">
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <div class="container-fluid mb-2 px-3 text-white">
+        @if (Model.User.Rating == "top_rated")
+        {
+            <h3 class="ml-4">Top Rated Movies</h3>
+        }
+        else 
+        {
+            <h3 class="ml-4">Popular Movies</h3>
+        }
+        <ul id="autoWidth3" class="cs-hidden">
+            @for (int i = 0; i < 19; i++)
+            {
+                var movie = Model.Rating.results[i];
+                var poster_link = movie.poster_path;
+
+                <li class="item-a">
+                    <div class="poster">
+                        <a class="overlay rounded text-center p-2" href="/movie/@movie.id">
+                            <h6 class="text-white">@movie.title</h6>
+                        </a>
+                        <img class="rounded shadow" src="https://image.tmdb.org/t/p/original/@poster_link" alt="">
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <div class="container-fluid mb-2 px-3 text-white">
+        @if (Model.User.Certification == "mature")
+        {
+            <h3 class="ml-4">Mature Movies</h3>
+        }
+        else 
+        {
+            <h3 class="ml-4">SFW Movies</h3>
+        }
+        <ul id="autoWidth4" class="cs-hidden">
+            @for (int i = 0; i < 19; i++)
+            {
+                var movie = Model.Certification.results[i];
                 var poster_link = movie.poster_path;
 
                 <li class="item-a">
@@ -165,7 +247,27 @@
                     $('#autoWidth').removeClass('cS-hidden');
                 } 
             });
-            
+            $('#autoWidth2').lightSlider({
+                autoWidth:true,
+                loop:true,
+                onSliderLoad: function() {
+                    $('#autoWidth').removeClass('cS-hidden');
+                } 
+            });
+            $('#autoWidth3').lightSlider({
+                autoWidth:true,
+                loop:true,
+                onSliderLoad: function() {
+                    $('#autoWidth').removeClass('cS-hidden');
+                } 
+            });
+            $('#autoWidth4').lightSlider({
+                autoWidth:true,
+                loop:true,
+                onSliderLoad: function() {
+                    $('#autoWidth').removeClass('cS-hidden');
+                } 
+            });
         });
     </script>
 </body>
