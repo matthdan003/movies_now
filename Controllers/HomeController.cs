@@ -112,7 +112,7 @@ namespace moviesnow.Controllers     //be sure to use your own project's namespac
 
                 DashboardWrapper WMod = new DashboardWrapper();
                 WMod.User = user;
-                WMod.Recommend = deserialize;
+                WMod.Recommend = GenerateRecommended();
                 WMod.Genre = FavoriteGenreReturn((int)user.Genre);
                 WMod.Budget = FavoriteBudgetReturn(user.Budget);
                 WMod.Rating = FavoriteRatingReturn(user.Rating);
@@ -166,6 +166,52 @@ namespace moviesnow.Controllers     //be sure to use your own project's namespac
 
                 return View("MovieDetails", WMod);
             }
+        }
+
+        public SearchResult GenerateRecommended()
+        {
+            int? UserId = HttpContext.Session.GetInt32("UserId");
+            User user = _context.Users.FirstOrDefault(u => u.UserId == UserId);
+
+            int genre_id = (int) user.Genre;
+            string budget = "";
+            string rating = "";
+            string certification = "";
+
+
+            if (user.Budget == "big_budget")
+            {
+                budget = "sort_by=revenue.desc";
+            }
+            else
+            {
+                budget = "sort_by=revenue.asc";
+            }
+
+            if (user.Rating == "top_rated")
+            {
+                rating = "vote_average.gte=8.0";
+            }
+            else
+            {
+                rating = "vote_count.gte=1000";
+            }
+
+            if (user.Certification == "mature")
+            {
+                certification = "certification.gte=R";
+            }
+            else
+            {
+                certification = "certification.lte=PG-13";
+            }
+
+            var client = _clientFactory.CreateClient("BaseAddress");
+            var response = client.GetAsync( $"/3/discover/movie?api_key=002100dd35529be2881e0dbc97008958&language=en-US&{budget}&{certification}&with_genres={genre_id}&{rating}&page=1").Result;
+            var json = response.Content.ReadAsStringAsync().Result;
+            var deserialize = JsonConvert.DeserializeObject<SearchResult>(json);
+
+            return deserialize;
         }
     }
 }
