@@ -10,6 +10,7 @@ namespace moviesnow.Models
         public User User {get; set;}
         public SearchResult Recommend {get; set;}
         public SearchResult Genre {get; set;}
+        public AllGenres AllGenres {get; set;}
         public SearchResult Budget {get; set;}
         public SearchResult Rating {get; set;}
         public SearchResult Certification {get; set;}

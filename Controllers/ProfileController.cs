@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
 using moviesnow.Models;
 
@@ -163,8 +164,38 @@ namespace moviesnow.Controllers
         }
 
         [HttpPost("edit_profile")]
-        public IActionResult UpdateProfile(EditProfileWrapper profile)
+        public IActionResult UpdateProfile(EditProfileWrapper updates)
         {
+            int? UserId = HttpContext.Session.GetInt32("UserId");
+            User user = _context.Users.FirstOrDefault(u => u.UserId == UserId);
+            EditUser changes = updates.Profile;
+            user.Email = changes.Email;
+            user.Password = changes.Password;
+
+            PasswordHasher<User> Hasher = new PasswordHasher<User>();
+            user.Password = Hasher.HashPassword(user, user.Password);
+
+            user.UpdatedAt = DateTime.Now;
+            _context.SaveChanges();
+
+            return RedirectToAction("EditProfile");
+        }
+
+        [HttpPost("edit_preferences")]
+        public IActionResult UpdatePreferences(EditProfileWrapper updates)
+        {
+            int? UserId = HttpContext.Session.GetInt32("UserId");
+            User user = _context.Users.FirstOrDefault(u => u.UserId == UserId);
+            EditPreferences changes = updates.Preferences;
+
+            user.Genre = changes.Genre;
+            user.Budget = changes.Budget;
+            user.Rating = changes.Rating;
+            user.Certification = changes.Certification;
+            user.UpdatedAt = DateTime.Now;
+
+            _context.SaveChanges();
+
             return RedirectToAction("EditProfile");
         }
     }

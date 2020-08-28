@@ -89,7 +89,6 @@ namespace moviesnow.Controllers     //be sure to use your own project's namespac
             var client = _clientFactory.CreateClient("BaseAddress");
             var response = client.GetAsync(BuildMovieUrl(id)).Result;
             var json = response.Content.ReadAsStringAsync().Result;
-            System.Console.WriteLine(json);
             var deserialize = JsonConvert.DeserializeObject<Movie>(json);
             return deserialize;
         }
@@ -118,6 +117,13 @@ namespace moviesnow.Controllers     //be sure to use your own project's namespac
                 WMod.Budget = FavoriteBudgetReturn(user.Budget);
                 WMod.Rating = FavoriteRatingReturn(user.Rating);
                 WMod.Certification = FavoriteCertificationReturn(user.Certification);
+
+                var gclient = _clientFactory.CreateClient("BaseAddress");
+                var gresponse = client.GetAsync($"/3/genre/movie/list?api_key=002100dd35529be2881e0dbc97008958").Result;
+                var gjson = gresponse.Content.ReadAsStringAsync().Result;
+                var gdeserialize = JsonConvert.DeserializeObject<AllGenres>(gjson);
+
+                WMod.AllGenres = gdeserialize;
 
                 return View("Dashboard", WMod);
             }
