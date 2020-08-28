@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/style.css">
     <link rel="stylesheet" href="~/css/moviestyle.css">
+    <link rel="stylesheet" href="~/css/lightslider.css">
+
     <title>@Model.Movie.title</title>
 </head>
 <body>
@@ -81,6 +83,57 @@
         @* <img src="https://image.tmdb.org/t/p/original/@Model.backdrop_path" width="100%" alt=""> *@
     </div>
 
+    <div class="container-fluid mt-5 mb-2 px-3 text-white" id="cast_carousel">
+        <h3 class="ml-4 mb-3">Top-Billed Cast</h3>
+        <ul id="autoWidth" class="cs-hidden">
+            @{int count = 0;}
+            @foreach (var cast in Model.Credits.cast)
+            {
+                if (count == 20)
+                {
+                    break;
+                }
+                <li class="item-a">
+                    <div class="card bg-dark text-center shadow mb-2" style="width: 150px;">
+                        @if (cast.profile_path == null)
+                        {
+                            <img class="card-img-top" src="~/img/grey_profile.jpg" alt="Card image cap">
+                        }
+                        else 
+                        {
+                            <img class="card-img-top" src="https://image.tmdb.org/t/p/original/@cast.profile_path" alt="Card image cap">
+                        }
+                        <div class="card-body">
+                            <p class="card-text font-weight-bold m-0">@cast.name</p>
+                            <p class="card-text mb-2"><small>@cast.character</small></p>
+                        </div>
+                    </div>
+                </li>
+                count++;
+            }
+        </ul>
+    </div>
+
+    <div class="container-fluid mb-2 px-3 text-white">
+        <h3 class="ml-4">Similar Movies</h3>
+        <ul id="autoWidth2" class="cs-hidden">
+            @for (int i = 0; i < 20; i++)
+            {
+                var movie = Model.SimilarMovies.results[i];
+                var poster_link = movie.poster_path;
+
+                <li class="item-a">
+                    <div class="poster">
+                        <a class="overlay rounded text-center p-2" href="/movie/@movie.id">
+                            <h6 class="text-white">@movie.title</h6>
+                        </a>
+                        <img class="rounded shadow" src="https://image.tmdb.org/t/p/original/@poster_link" alt="">
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="" crossorigin="anonymous"></script>
     <script src="~/script/lightslider.js"></script>
@@ -89,14 +142,6 @@
 
     <script>
         $(document).ready(function(){
-            $('#autoWidth').lightSlider({
-                autoWidth:true,
-                loop:true,
-                onSliderLoad: function() {
-                    $('#autoWidth').removeClass('cS-hidden');
-                } 
-            });
-            
             $.get("https://api.themoviedb.org/3/movie/@Model.Movie.id?api_key=002100dd35529be2881e0dbc97008958&language=en-US&append_to_response=release_dates", function(res) {
                 var html_str = "<strong>"
                 var cert = res.release_dates
@@ -124,6 +169,22 @@
                 html_str += "</strong> | "
                 $("#cert").html(html_str)
             }, "json");
+
+            $('#autoWidth').lightSlider({
+                autoWidth:true,
+                loop:true,
+                onSliderLoad: function() {
+                    $('#autoWidth').removeClass('cS-hidden');
+                } 
+            });
+            $('#autoWidth2').lightSlider({
+                autoWidth:true,
+                loop:true,
+                onSliderLoad: function() {
+                    $('#autoWidth').removeClass('cS-hidden');
+                } 
+            });
+            
         });
     </script>
 

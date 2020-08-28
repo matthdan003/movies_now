@@ -119,7 +119,7 @@ namespace moviesnow.Controllers     //be sure to use your own project's namespac
                 WMod.Certification = FavoriteCertificationReturn(user.Certification);
 
                 var gclient = _clientFactory.CreateClient("BaseAddress");
-                var gresponse = client.GetAsync($"/3/genre/movie/list?api_key=002100dd35529be2881e0dbc97008958").Result;
+                var gresponse = gclient.GetAsync($"/3/genre/movie/list?api_key=002100dd35529be2881e0dbc97008958").Result;
                 var gjson = gresponse.Content.ReadAsStringAsync().Result;
                 var gdeserialize = JsonConvert.DeserializeObject<AllGenres>(gjson);
 
@@ -142,9 +142,21 @@ namespace moviesnow.Controllers     //be sure to use your own project's namespac
                 Movie movie = GetMovie(movie_id);
                 User user = _context.Users.FirstOrDefault(u => u.UserId == UserId);
 
+                var client = _clientFactory.CreateClient("BaseAddress");
+                var response = client.GetAsync($"/3/movie/{movie_id}/credits?api_key=002100dd35529be2881e0dbc97008958").Result;
+                var json = response.Content.ReadAsStringAsync().Result;
+                var deserialize = JsonConvert.DeserializeObject<AllCredits>(json);
+
+                var sclient = _clientFactory.CreateClient("BaseAddress");
+                var sresponse = sclient.GetAsync($"/3/movie/{movie_id}/similar?api_key=002100dd35529be2881e0dbc97008958&language=en-US&page=1").Result;
+                var sjson = sresponse.Content.ReadAsStringAsync().Result;
+                var sdeserialize = JsonConvert.DeserializeObject<SearchResult>(sjson);
+
                 DetailsWrapper WMod = new DetailsWrapper();
                 WMod.User = user;
                 WMod.Movie = movie;
+                WMod.Credits = deserialize;
+                WMod.SimilarMovies = sdeserialize;
 
                 return View("MovieDetails", WMod);
             }

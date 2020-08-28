@@ -9,5 +9,7 @@ namespace moviesnow.Models
     {
         public User User {get; set;}
         public Movie Movie {get; set;}
+        public AllCredits Credits {get; set;}
+        public SearchResult SimilarMovies {get; set;}
     }
 }
