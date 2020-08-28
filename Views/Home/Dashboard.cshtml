@@ -134,7 +134,7 @@
     </div>
 
     <div class="container-fluid mt-5 mb-2 px-3 text-white">
-        <h3>@Model.User.Genre</h3>
+        <h3 class="ml-4">@Model.AllGenres.genres.FirstOrDefault(g => g.id == Model.User.Genre).name Movies</h3>
         <ul id="autoWidth" class="cs-hidden">
             @for (int i = 0; i < 19; i++)
             {
