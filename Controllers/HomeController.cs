@@ -152,11 +152,17 @@ namespace moviesnow.Controllers     //be sure to use your own project's namespac
                 var sjson = sresponse.Content.ReadAsStringAsync().Result;
                 var sdeserialize = JsonConvert.DeserializeObject<SearchResult>(sjson);
 
+                var vclient = _clientFactory.CreateClient("BaseAddress");
+                var vresponse = vclient.GetAsync($"/3/movie/{movie_id}/videos?api_key=002100dd35529be2881e0dbc97008958&language=en-US").Result;
+                var vjson = vresponse.Content.ReadAsStringAsync().Result;
+                var vdeserialize = JsonConvert.DeserializeObject<AllVideos>(vjson);
+
                 DetailsWrapper WMod = new DetailsWrapper();
                 WMod.User = user;
                 WMod.Movie = movie;
                 WMod.Credits = deserialize;
                 WMod.SimilarMovies = sdeserialize;
+                WMod.Videos = vdeserialize;
 
                 return View("MovieDetails", WMod);
             }

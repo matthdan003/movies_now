@@ -11,5 +11,6 @@ namespace moviesnow.Models
         public Movie Movie {get; set;}
         public AllCredits Credits {get; set;}
         public SearchResult SimilarMovies {get; set;}
+        public AllVideos Videos {get; set;}
     }
 }

@@ -70,7 +70,18 @@
                                 @Model.Movie.vote_average
                             </span>
                         </h1>
-                        <p><span id="cert"></span> @Model.Movie.release_date | @Model.Movie.genres.ElementAt(0).name | @Model.Movie.runtime Minutes</p>
+                        <p>
+                            <span id="cert"></span> 
+                            @Model.Movie.release_date | 
+                            @{int end = Model.Movie.genres.Length - 1;}
+                            @for (int i=0; i < Model.Movie.genres.Length - 1; i++)
+                            {
+                                Genre genre = Model.Movie.genres[i];
+                                <span>@genre.name, </span>
+                            }
+                            <span>@Model.Movie.genres.ElementAt(end).name </span>
+                            | @Model.Movie.runtime Minutes
+                        </p>
                         <p class="font-weight-light text-uppercase"><em>@Model.Movie.tagline</em></p>
                         <div class="bio mb-3"><strong>Overview: </strong>@Model.Movie.overview</div>
                         <p><strong>Language: </strong>@Model.Movie.original_language</p>
@@ -81,6 +92,43 @@
             </div>
         </div>
         @* <img src="https://image.tmdb.org/t/p/original/@Model.backdrop_path" width="100%" alt=""> *@
+    </div>
+
+    <div class="container-fluid mt-5 mb-2 px-3 text-white" id="cast_carousel">
+        <h3 class="ml-4 mb-3">Videos</h3>
+        <div class="row ml-2">
+            @for(int i=0; i < Model.Videos.results.Length; i++)
+            {
+                var video = Model.Videos.results[i];
+                var index = i;
+                <div class="mb-2 mr-2">
+                    <a href="" class="mx-md-auto" data-toggle="modal" data-target="#modal@(index)">
+                        <img src="https://img.youtube.com/vi/@video.key/0.jpg" class="rounded shadow" width="150px" alt="">
+                    </a>
+                    <div class="modal fade" id="modal@(index)" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                            <div class="modal-content bg-dark shadow">
+                                <div class="modal-body mb-0 p-0">
+                                    <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/@video.key?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer justify-content-center">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    $('#modal@(index)').on('hide.bs.modal', function (e) {
+                        $('#modal@(index) iframe').attr('src', '');
+                    });
+                </script>
+            }
+        </div>
     </div>
 
     <div class="container-fluid mt-5 mb-2 px-3 text-white" id="cast_carousel">
@@ -169,6 +217,49 @@
                 html_str += "</strong> | "
                 $("#cert").html(html_str)
             }, "json");
+
+            $('#modal0').on('hidden.bs.modal', function (e) {
+                $('#modal0 iframe').attr('src', $("#modal0 iframe").attr("src"));
+            });
+            $('#modal1').on('hidden.bs.modal', function (e) {
+                $('#modal1 iframe').attr('src', $("#modal1 iframe").attr("src"));
+            });
+            $('#modal2').on('hidden.bs.modal', function (e) {
+                $('#modal2 iframe').attr('src', $("#modal2 iframe").attr("src"));
+            });
+            $('#modal3').on('hidden.bs.modal', function (e) {
+                $('#modal3 iframe').attr('src', $("#modal3 iframe").attr("src"));
+            });
+            $('#modal4').on('hidden.bs.modal', function (e) {
+                $('#modal4 iframe').attr('src', $("#modal4 iframe").attr("src"));
+            });
+            $('#modal5').on('hidden.bs.modal', function (e) {
+                $('#modal5 iframe').attr('src', $("#modal5 iframe").attr("src"));
+            });
+            $('#modal6').on('hidden.bs.modal', function (e) {
+                $('#modal6 iframe').attr('src', $("#modal6 iframe").attr("src"));
+            });
+            $('#modal7').on('hidden.bs.modal', function (e) {
+                $('#modal7 iframe').attr('src', $("#modal7 iframe").attr("src"));
+            });
+            $('#modal8').on('hidden.bs.modal', function (e) {
+                $('#modal8 iframe').attr('src', $("#modal8 iframe").attr("src"));
+            });
+            $('#modal9').on('hidden.bs.modal', function (e) {
+                $('#modal9 iframe').attr('src', $("#modal9 iframe").attr("src"));
+            });
+            $('#modal10').on('hidden.bs.modal', function (e) {
+                $('#modal10 iframe').attr('src', $("#modal10 iframe").attr("src"));
+            });
+
+
+            $('#autoWidthv').lightSlider({
+                autoWidth:true,
+                loop:true,
+                onSliderLoad: function() {
+                    $('#autoWidth').removeClass('cS-hidden');
+                } 
+            });
 
             $('#autoWidth').lightSlider({
                 autoWidth:true,
