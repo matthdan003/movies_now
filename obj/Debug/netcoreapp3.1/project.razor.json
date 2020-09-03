@@ -14427,6 +14427,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\danie\\Desktop\\Projects\\moviesnow\\moviesnow\\Views\\AllMovies\\AllMovies.cshtml",
+      "TargetPath": "Views\\AllMovies\\AllMovies.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\danie\\Desktop\\Projects\\moviesnow\\moviesnow\\Views\\Profile\\Rating.cshtml",
       "TargetPath": "Views\\Profile\\Rating.cshtml",
       "FileKind": "mvc"

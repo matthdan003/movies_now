@@ -9,7 +9,7 @@ using moviesnow.Models;
 namespace moviesnow.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20200827185030_FirstMigration")]
+    [Migration("20200828154312_FirstMigration")]
     partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -1,5 +1,5 @@
 @using moviesnow.Models
-@model DashboardWrapper
+@model AllMoviesWrapper
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/style.css">
     <link rel="stylesheet" href="~/css/lightslider.css">
-    <title>Dashboard</title>
+    <title>All Movies</title>
 </head>
 <body>
     <header class="header">
@@ -71,7 +71,7 @@
                 <div class="carousel-item active">
                     @for (int i = 0; i < 1; i++)
                     {
-                        var movie = Model.Recommend.results[i];
+                        var movie = Model.Trending.results[i];
                         var link = movie.poster_path;
 
                         <div class="container text-white">
@@ -98,7 +98,7 @@
 
             @for (int i = 1; i <10; i++)
             {
-                var movie = Model.Recommend.results[i];
+                var movie = Model.Trending.results[i];
                 var link = movie.poster_path;
                 <div class="carousel-item">
                     <div class="container text-white">
@@ -134,92 +134,11 @@
     </div>
 
     <div class="container-fluid mt-5 mb-2 px-3 text-white">
-        <h3 class="ml-4">@Model.AllGenres.genres.FirstOrDefault(g => g.id == Model.User.Genre).name Movies</h3>
+        <h3 class="ml-4">Now Playing</h3>
         <ul id="autoWidth" class="cs-hidden">
             @for (int i = 0; i < 20; i++)
             {
-                var movie = Model.Genre.results[i];
-                var poster_link = movie.poster_path;
-
-                <li class="item-a">
-                    <div class="poster">
-                        <a class="overlay rounded text-center p-2" href="/movie/@movie.id">
-                            <h6 class="text-white">@movie.title</h6>
-                        </a>
-                        <img class="rounded shadow" src="https://image.tmdb.org/t/p/original/@poster_link" alt="">
-                    </div>
-                </li>
-            }
-        </ul>
-    </div>
-
-    <div class="container-fluid mb-2 px-3 text-white">
-        @if (Model.User.Budget == "big_budget")
-        {
-            <h3 class="ml-4">Big-Budget Movies</h3>
-        }
-        else 
-        {
-            <h3 class="ml-4">Small-Screen Movies</h3>
-        }
-        <ul id="autoWidth2" class="cs-hidden">
-            @for (int i = 0; i < 20; i++)
-            {
-                var movie = Model.Budget.results[i];
-                var poster_link = movie.poster_path;
-
-                <li class="item-a">
-                    <div class="poster">
-                        <a class="overlay rounded text-center p-2" href="/movie/@movie.id">
-                            <h6 class="text-white">@movie.title</h6>
-                        </a>
-                        <img class="rounded shadow" src="https://image.tmdb.org/t/p/original/@poster_link" alt="">
-                    </div>
-                </li>
-            }
-        </ul>
-    </div>
-
-    <div class="container-fluid mb-2 px-3 text-white">
-        @if (Model.User.Rating == "top_rated")
-        {
-            <h3 class="ml-4">Top-Rated Movies</h3>
-        }
-        else 
-        {
-            <h3 class="ml-4">Popular Movies</h3>
-        }
-        <ul id="autoWidth3" class="cs-hidden">
-            @for (int i = 0; i < 20; i++)
-            {
-                var movie = Model.Rating.results[i];
-                var poster_link = movie.poster_path;
-
-                <li class="item-a">
-                    <div class="poster">
-                        <a class="overlay rounded text-center p-2" href="/movie/@movie.id">
-                            <h6 class="text-white">@movie.title</h6>
-                        </a>
-                        <img class="rounded shadow" src="https://image.tmdb.org/t/p/original/@poster_link" alt="">
-                    </div>
-                </li>
-            }
-        </ul>
-    </div>
-
-    <div class="container-fluid mb-2 px-3 text-white">
-        @if (Model.User.Certification == "mature")
-        {
-            <h3 class="ml-4">Mature Movies</h3>
-        }
-        else 
-        {
-            <h3 class="ml-4">SFW Movies</h3>
-        }
-        <ul id="autoWidth4" class="cs-hidden">
-            @for (int i = 0; i < 20; i++)
-            {
-                var movie = Model.Certification.results[i];
+                var movie = Model.NowPlaying.results[i];
                 var poster_link = movie.poster_path;
 
                 <li class="item-a">
@@ -247,28 +166,8 @@
                     $('#autoWidth').removeClass('cS-hidden');
                 } 
             });
-            $('#autoWidth2').lightSlider({
-                autoWidth:true,
-                loop:true,
-                onSliderLoad: function() {
-                    $('#autoWidth').removeClass('cS-hidden');
-                } 
-            });
-            $('#autoWidth3').lightSlider({
-                autoWidth:true,
-                loop:true,
-                onSliderLoad: function() {
-                    $('#autoWidth').removeClass('cS-hidden');
-                } 
-            });
-            $('#autoWidth4').lightSlider({
-                autoWidth:true,
-                loop:true,
-                onSliderLoad: function() {
-                    $('#autoWidth').removeClass('cS-hidden');
-                } 
-            });
         });
     </script>
 </body>
 </html>
+
