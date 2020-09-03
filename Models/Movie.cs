@@ -12,7 +12,7 @@ namespace moviesnow.Models
         public string overview {get; set;}
         public string poster_path {get; set;}
         public string release_date {get; set;}
-        public int revenue {get; set;}
+        public Int64 revenue {get; set;}
         public int runtime {get; set;}
         public string status {get; set;}
         public string tagline {get; set;}
