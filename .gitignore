@@ -8,6 +8,7 @@
 
 appsettings.json
 .vscode/
+obj/
 
 # User-specific files
 *.suo
