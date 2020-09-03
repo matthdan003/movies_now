@@ -9,6 +9,7 @@
 appsettings.json
 .vscode/
 obj/
+Migrations/
 
 # User-specific files
 *.suo
